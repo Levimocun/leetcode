@@ -26,9 +26,9 @@ public:
     	vector<string> X = {"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
     	vector<string> D = {"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
     	vector<string> M = {"","M","MM","MMM"};
-    	return M[num/1000]+D[num/100]+X[num/10]+I[num%10];
+    	return M[num/1000]+D[(num%1000)/100]+X[(num%100)/10]+I[num%10];
     }
-    int RomanToint(string roman){
+   int romanToInt(string roman){
     	map<char,int> dict;
     	int prenum=0,total=0,i;
 		dict.insert(pair <char,int> ('I',1));
@@ -45,6 +45,7 @@ public:
 				total = total+dict[roman[i]]-2*prenum;
 			else
 				total = total+dict[roman[i]];
+			prenum = dict[roman[i]];
 		}
 		return total;
 	}
